@@ -1,0 +1,17 @@
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "fullname":"Nguyen Trung Kien",
+    "email":"nkien9450@gmail.com",
+    "password":"1234567890"
+}
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email":"manhdang.150504@gmail.com",
+    "password":"manh123"
+}
