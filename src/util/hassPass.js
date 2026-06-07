@@ -1,5 +1,6 @@
-const bcrypt = require("bcryptjs");
-const hashPass = async (password) => {
+import bcrypt from 'bcryptjs';
+
+export const hashPass = async (password) => {
   try {
     const salt = await bcrypt.genSalt(10); // ✅ dùng hàm async
     const hash = await bcrypt.hash(password, salt); // ✅ dùng hàm async
@@ -9,7 +10,7 @@ const hashPass = async (password) => {
     throw e; // Nên throw để controller bắt được lỗi
   }
 };
-const decryptPass = async (password, passDB) => {
+export const decryptPass = async (password, passDB) => {
   try {
     const decryptPassword = await bcrypt.compare(password, passDB);
     return decryptPassword;
@@ -18,4 +19,3 @@ const decryptPass = async (password, passDB) => {
   }
 };
 
-module.exports = { hashPass, decryptPass };

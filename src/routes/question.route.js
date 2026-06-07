@@ -1,4 +1,4 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
 const questionController = require("../controllers/questionController");
 
@@ -18,4 +18,4 @@ const upload = multer(); // hoặc multer({ storage: ... })
 
 // router.post("/questions", upload.fields([{ name: "image" }, { name: "audio" }]), createQuestion);
 
-module.exports = router;
+export default router;

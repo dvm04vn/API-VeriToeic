@@ -1,6 +1,6 @@
-const express = require("express");
-const passport = require("passport");
+import express from 'express';
 const router = express.Router();
+const passport = require("passport");
 
 const jwt = require("jsonwebtoken");
 const Users = require("../models/User");
@@ -63,4 +63,4 @@ router.post("/auth/success", apiController.authSuccess);
 //     }
 // });
 
-module.exports = router;
+export default router;

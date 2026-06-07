@@ -1,8 +1,8 @@
-const User = require("../models/User");
-const Profile = require("../models/Profile");
+import User from "../models/User.js";
+import Profile from "../models/Profile.js";
 
-const { hashPass, decryptPass } = require("../util/hassPass");
-const { setToken } = require("../util/JWTutil");
+import { hashPass, decryptPass } from "../util/hassPass.js";
+import { setToken } from "../util/JWTutil.js";
 
 class AuthController {
   // [POST] /auth/register
@@ -153,4 +153,4 @@ class AuthController {
   }
 }
 
-module.exports = new AuthController();
+export default new AuthController();

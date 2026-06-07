@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 const topicController = require('../controllers/topicController');
 
@@ -9,4 +9,5 @@ router.get('/:slug', topicController.getTopicById);
 router.post("/", topicController.createTopic);
 router.put("/:id", topicController.updateTopic);
 router.delete("/:id", topicController.deleteTopic);
-module.exports = router;
+
+export default router;

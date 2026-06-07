@@ -1,20 +1,21 @@
-require("dotenv").config();
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const FacebookStrategy = require("passport-facebook").Strategy;
-const { nanoid } = require("nanoid");
+import dotenv from 'dotenv';
+dotenv.config();
+import passport from "passport";
+import GoogleStrategy from "passport-google-oauth20";
+import FacebookStrategy from "passport-facebook";
+import { nanoid } from "nanoid";
 
-const Users = require("../../models/User");
-const Profile = require("../../models/Profile");
+import Users from "../../models/User.js";
+import Profile from "../../models/Profile.js";
 
 // Helper function
-const generateUsername = (profileName = "") => {
+export const generateUsername = (profileName = "") => {
   const clean = profileName.replace(/\s+/g, "");
   const token = nanoid(4).toUpperCase();
   return `${clean}${token}`;
 };
 
-const saveUser = async ({
+export const saveUser = async ({
   username,
   email,
   provider,
@@ -33,7 +34,7 @@ const saveUser = async ({
   return newUser;
 };
 
-const saveProfile = async ({ userID, avatar, first_name, last_name }) => {
+export const saveProfile = async ({ userID, avatar, first_name, last_name }) => {
   const newProfile = new Profile({
     userID,
     avatar,
@@ -43,7 +44,7 @@ const saveProfile = async ({ userID, avatar, first_name, last_name }) => {
   await newProfile.save();
 };
 
-const checkProfile = async ({ userID, avatar, first_name, last_name }) => {
+export const checkProfile = async ({ userID, avatar, first_name, last_name }) => {
   const existing = await Profile.findOne({ userID });
   if (!existing) {
     await saveProfile({ userID, avatar, first_name, last_name });

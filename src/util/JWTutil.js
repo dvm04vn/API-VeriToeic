@@ -1,7 +1,8 @@
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
+import dotenv from 'dotenv';
+dotenv.config();
+import jwt from "jsonwebtoken";
 
-const AccessToken = (user) => {
+export const AccessToken = (user) => {
   return jwt.sign(
     { id: user._id || user.id, role: user.role },
     process.env.ACCESS_TOKEN,
@@ -11,12 +12,12 @@ const AccessToken = (user) => {
   );
 };
 
-const RefreshToken = (user) =>
+export const RefreshToken = (user) =>
   jwt.sign({ id: user._id, role: user.role }, process.env.REFRESH_TOKEN, {
     expiresIn: process.env.END_TIME_REFRESH,
   });
 
-const setToken = (res, user) => {
+export const setToken = (res, user) => {
   const newAccessToken = `Bearer ${AccessToken(user)}`;
   const newRefreshToken = RefreshToken(user);
   res.cookie("RefreshToken", newRefreshToken, {
@@ -28,8 +29,4 @@ const setToken = (res, user) => {
   });
   return newAccessToken;
 };
-module.exports = {
-  AccessToken,
-  RefreshToken,
-  setToken,
-};
+

@@ -1,6 +1,5 @@
-const express = require("express");
+import express from 'express'
 const router = express.Router();
-
 const ProfileController = require("../controllers/profileController");
 
 const { checkToken } = require("../middlewares/authMiddleware");
@@ -11,4 +10,5 @@ router.post("/create/:userID", ProfileController.createProfile);
 
 // [PUT]
 router.patch("/edit", checkToken, ProfileController.editProfile);
-module.exports = router;
+
+export default router;
